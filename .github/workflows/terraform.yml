@@ -13,7 +13,7 @@ on:
 
 jobs:
   terraform:
-    name: Terraform compliance
+    name: Terraform lint, init, validate and plan based on module examples
     runs-on: ubuntu-20.04
     container: hashicorp/terraform:1.0.1
 
@@ -21,11 +21,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Terraform lint
+      - name: Lint
         run: terraform fmt -check -recursive -diff .
 
-      - name: Initialize terraform
+      - name: Initialize
         run: terraform -chdir="services/webserver-cluster/examples/basic-example" init
 
-      - name: Validate example
+      - name: Validate
         run: terraform -chdir="services/webserver-cluster/examples/basic-example" validate -no-color
+
+      - name: Plan
+        run: terraform -chdir="services/webserver-cluster/examples/basic-example" plan
