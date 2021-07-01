@@ -24,18 +24,14 @@ jobs:
       - name: Terraform lint
         run: terraform fmt -check -recursive -diff .
 
-      - name: Define examples directories
-        run: |
-          EXAMPLES_DIRS=("services/webserver-cluster/examples/basic-example")
-
       - name: Initialize terraform
         run: |
-          for dir in $EXAMPLE_DIRS; do
+          for dir in ("services/webserver-cluster/examples/basic-example"); do
             terraform -chdir="$dir" init
           done
 
       - name: Validate examples
         run: |
-          for dir in $EXAMPLE_DIRS; do
+          for dir in ("services/webserver-cluster/examples/basic-example"); do
             terraform -chdir="$dir" validate -no-color
           done
