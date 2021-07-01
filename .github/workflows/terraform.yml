@@ -10,8 +10,6 @@ on:
   release:
     types:
       - created
-env:
-  EXAMPLES_DIRS: ( services/webserver-cluster/examples )
 
 jobs:
   terraform:
@@ -25,6 +23,12 @@ jobs:
 
       - name: Terraform lint
         run: terraform fmt -check -recursive -diff .
+
+      - name: Define examples directories
+        run: |
+          EXAMPLES_DIRS=(
+            services/webserver-cluster/examples/basic-example
+          )
 
       - name: Initialize terraform
         run: |
