@@ -26,12 +26,12 @@ jobs:
 
       - name: Initialize terraform
         run: |
-          for dir in ("services/webserver-cluster/examples/basic-example"); do
+          for dir in ( "services/webserver-cluster/examples/basic-example" ); do
             terraform -chdir="$dir" init
           done
 
       - name: Validate examples
         run: |
-          for dir in ("services/webserver-cluster/examples/basic-example"); do
+          for dir in ( "services/webserver-cluster/examples/basic-example" ); do
             terraform -chdir="$dir" validate -no-color
           done
