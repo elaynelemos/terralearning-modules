@@ -10,14 +10,30 @@ on:
   release:
     types:
       - created
+env:
+  EXAMPLES_DIRS: ( services/webserver-cluster/examples )
 
 jobs:
   terraform:
     name: Terraform compliance
     runs-on: ubuntu-20.04
     container: hashicorp/terraform:1.0.1
+
     steps:
       - name: Checkout
         uses: actions/checkout@master
+
       - name: Terraform lint
         run: terraform fmt -check -recursive -diff .
+
+      - name: Initialize terraform
+        run: |
+          for dir in $EXAMPLE_DIRS; do
+            terraform -chdir="$dir" init
+          done
+
+      - name: Validate examples
+        run: |
+          for dir in $EXAMPLE_DIRS; do
+            terraform -chdir="$dir" validate -no-color
+          done
