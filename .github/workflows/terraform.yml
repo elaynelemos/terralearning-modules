@@ -26,9 +26,7 @@ jobs:
 
       - name: Define examples directories
         run: |
-          EXAMPLES_DIRS=(
-            services/webserver-cluster/examples/basic-example
-          )
+          EXAMPLES_DIRS=("services/webserver-cluster/examples/basic-example")
 
       - name: Initialize terraform
         run: |
