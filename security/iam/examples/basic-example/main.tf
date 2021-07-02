@@ -5,5 +5,5 @@ provider "aws" {
 module "iam_users" {
   source = "../../"
 
-  user_names  = ["elayne", "terralearning"]
+  user_names = ["elayne", "terralearning"]
 }
