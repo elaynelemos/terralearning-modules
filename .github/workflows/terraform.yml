@@ -13,7 +13,7 @@ on:
 
 jobs:
   terraform:
-    name: Terraform lint, init, validate and plan based on module examples
+    name: Terraform lint, init and validate based on module examples
     runs-on: ubuntu-20.04
     container: hashicorp/terraform:1.0.1
 
@@ -29,9 +29,3 @@ jobs:
 
       - name: Validate
         run: terraform -chdir="services/webserver-cluster/examples/basic-example" validate -no-color
-
-      - name: Plan
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: terraform -chdir="services/webserver-cluster/examples/basic-example" plan
