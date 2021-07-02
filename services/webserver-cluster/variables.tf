@@ -24,6 +24,11 @@ variable "custom_tags" {
   default     = {}
 }
 
+variable "enable_autoscaling" {
+  description = "If set to true, enable auto scaling."
+  type        = bool
+}
+
 variable "ami_code" {
   description = "The base image used for the servers."
   type        = string
