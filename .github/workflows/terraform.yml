@@ -15,6 +15,7 @@ jobs:
   terraform:
     name: Terraform lint, init and validate based on module examples
     runs-on: ubuntu-20.04
+    timeout-minutes: 10
     container: hashicorp/terraform:1.0.1
 
     steps:
